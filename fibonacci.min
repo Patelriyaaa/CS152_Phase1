@@ -1,0 +1,38 @@
+function calculateFibonacci;
+begin
+  inputParams
+    inputNumber : integer;
+  endParams
+  
+  localVariables
+    fibValue : integer;
+  endVariables
+  
+  begin
+    if (inputNumber <= 1) then 
+      return 1; 
+    endif;
+    
+    fibValue := calculateFibonacci(inputNumber - 1) + calculateFibonacci(inputNumber - 2);
+    return fibValue;
+  end
+end
+
+function mainFunction;
+begin
+  inputParams
+    userInput : integer;
+  endParams
+  
+  localVariables
+    n : integer;
+    fibonacciResult : integer;
+  endVariables
+  
+  begin
+    read userInput;
+    n := userInput;
+    fibonacciResult := calculateFibonacci(n);
+    write fibonacciResult;
+  end
+end
