@@ -1,0 +1,26 @@
+function calculateFibonacci;
+beginparams
+	k : integer;
+endparams
+beginlocals
+endlocals
+beginbody
+	if (k <= 1) then return 1; endif;
+	return calculateFibonacci(k - 1) + calculateFibonacci(k - 2);
+endbody
+
+function mainProgram;
+beginparams
+endparams
+beginlocals
+	n : integer;
+	fibonacciResult : integer;
+endlocals
+beginbody
+	read n;
+	fibonacciResult := calculateFibonacci(n);
+	write fibonacciResult;
+endbody
+
+## Please ignore this comment, it is not relevant to the code analysis.
+## Another comment: 1+2+3+4=10
