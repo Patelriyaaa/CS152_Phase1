@@ -1,0 +1,62 @@
+## primes.min: Calculate prime numbers using the Sieve of Eratosthenes algorithm
+## (http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+##
+## Calculate prime numbers up to a specified 'n' by marking multiples of progressively
+## larger prime numbers in a boolean array. The array stores '1' in a[k] if 'k' is
+## composite (not prime) and '0' if 'k' is not divisible by the divisors considered
+## so far.
+##
+## Requires an input integer 'n,' assumed to be less than 1000.
+
+function mainProgram;
+beginparams
+endparams
+
+beginlocals
+
+n : integer;
+primeCandidates : array[1000] of integer;  ## Array to hold prime candidates
+i, j : integer;
+x, sqrtN : integer;
+
+endlocals
+
+beginbody  ## Main program
+    ## Compute the square root of 'n' and store the result in 'sqrtN.'
+    read n;
+    x := n;
+    while x > n / x beginloop
+        x := (x + n / x) / 2;
+    endloop;
+    sqrtN := x;
+
+    ## Initialize the array.
+    i := 2;
+    while i <= n beginloop
+        primeCandidates[i] := 0;
+        i := i + 1;
+    endloop;
+
+    ## Calculate prime numbers.
+    i := 2;
+    while i <= sqrtN beginloop
+        if primeCandidates[i] == 0 then
+            ## 'i' is prime, so eliminate its multiples.
+            j := i + i;
+            while j <= n beginloop
+                primeCandidates[j] := 1;
+                j := j + i;
+            endloop;
+        endif;
+        i := i + 1;
+    endloop;
+
+    ## Print prime numbers.
+    i := 2;
+    while i <= n beginloop
+        if primeCandidates[i] == 0 then
+            write i;
+        endif;
+        i := i + 1;
+    endloop;
+endbody
